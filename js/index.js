@@ -23,12 +23,20 @@ function startFlashcards() {
   window.location.href = './html/flashcards.html'; // Navigate to the flashcards page
 }
 
-function startPuzzle(){
-  window.location.href = './html/puzzle.html';
+// function startPuzzle(){
+//   window.location.href = './html/puzzle.html';
+// }
+
+// function starStory(){
+//   window.location.href = './html/story.html';
+// }
+
+function startWordSearch(){
+  window.location.href = './html/word_search.html';
 }
 
-function starStory(){
-  window.location.href = './html/story.html';
+function startMemoryGame(){
+  window.location.href = './html/memory_game.html';
 }
 
 function returnToPreviousPage() {
