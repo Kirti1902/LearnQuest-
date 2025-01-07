@@ -1,6 +1,6 @@
 # LearnQuest!
 
-# Maths Quiz and Flash Cards Website
+# Maths Quiz and Flash Cards 
 
 ## Overview
 
