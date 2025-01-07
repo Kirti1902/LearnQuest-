@@ -39,6 +39,11 @@ function startMemoryGame(){
   window.location.href = './html/memory_game.html';
 }
 
+function startMoral(){
+  window.location.href = './html/moral.html';
+}
+
+
 function returnToPreviousPage() {
   if (confirm("Are you sure you want to leave?")) {
     window.location.href = 'index.html'; // Return to the home page

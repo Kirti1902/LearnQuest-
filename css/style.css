@@ -1,148 +1,108 @@
 /* Global styles */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f7f6;
-    color: #333;
-    text-align: center;
-    padding: 20px;
-  }
-  
-  .container {
-    margin: 0 auto;
-    width: 80%;
-    max-width: 600px;
-  }
-  
-  h1, h2 {
-    color: #009688;
-  }
-  
-  button {
-    background-color: #009688;
-    color: white;
-    padding: 15px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    margin: 10px;
-    border-radius: 5px;
-  }
-  
-  button:hover {
-    background-color: #00796b;
-  }
-  
-  button:active {
-    background-color: #004d40;
-  }
-  
-  button:focus {
-    outline: none;
-  }
-  
-  #timer {
-    font-size: 20px;
-    color: #ff0000;
-    margin-top: 20px;
-  }
-  
-  #flashcard-content {
-    background-color: #ffffff;
-    border: 2px solid #009688;
-    padding: 20px;
-    border-radius: 5px;
-  }
-  
-  #question-container {
-    margin-top: 30px;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
+  font-family: 'Comic Sans MS', sans-serif;
+  background: linear-gradient(to bottom right, #ffec99, #ffccff);
+  color: #333;
+  text-align: center;
+  padding: 20px;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {
-    background-color: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 300px;
-}
-
-h1 {
-    font-size: 24px;
-}
-
-select, button {
-    margin: 10px 0;
-}
-
-.flashcard {
-    width: 200px;
-    height: 250px;
-    margin: 10px;
-    perspective: 1000px;
-    display: inline-block;
-}
-
-.flashcard .front, .flashcard .back {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    backface-visibility: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-    padding: 20px;
-    box-sizing: border-box;
-    border-radius: 8px;
-}
-
-.flashcard .front {
-    background-color: #4caf50;
-    color: white;
-}
-
-.flashcard .back {
-    background-color: #ff9800;
-    color: white;
-    transform: rotateY(180deg);
-}
-
-.flashcard.flipped .front {
-    transform: rotateY(180deg);
-}
-
-.flashcard.flipped .back {
-    transform: rotateY(0);
-}
-
-.flashcard {
-  width: 150px;
-  height: 225px;
-  background-color: #ffcccb;
+  margin: 0 auto;
+  width: 90%;
+  max-width: 600px;
+  background: white;
+  padding: 30px;
   border-radius: 15px;
-  position: relative;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border: 3px solid #ffd700;
+  animation: float 3s infinite ease-in-out;
+}
+
+/* Floating effect for container */
+@keyframes float {
+  0%, 100% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-10px);
+  }
+}
+
+h1, h2 {
+  color: #ff6347;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 32px;
+}
+
+button {
+  background-color: #ff7f50;
+  color: white;
+  padding: 15px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
   margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0 5px #d2691e;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #ffa07a;
+  box-shadow: 0 8px #b45f06;
+  transform: translateY(-2px);
+}
+
+button:active {
+  background-color: #cd5c5c;
+  box-shadow: 0 2px #8b4513;
+  transform: translateY(2px);
+}
+
+button:focus {
+  outline: none;
+}
+
+#timer {
+  font-size: 22px;
+  color: #ff4500;
+  margin-top: 20px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Flashcard styles */
+.flashcard {
+  width: 160px;
+  height: 240px;
+  background-color: #ffe4b5;
+  border-radius: 20px;
+  position: relative;
+  margin: 15px;
   cursor: pointer;
   transform-style: preserve-3d;
   transform: rotateY(0);
   transition: transform 0.6s;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.flashcard:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 .flashcard img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 15px;
+  border-radius: 20px;
   backface-visibility: hidden;
 }
 
@@ -150,11 +110,11 @@ select, button {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   color: white;
-  background-color: #ff6b6b;
-  border-radius: 15px;
+  background-color: #ff69b4;
+  border-radius: 20px;
   position: absolute;
   top: 0;
   left: 0;
@@ -162,14 +122,28 @@ select, button {
   bottom: 0;
   backface-visibility: hidden;
   transform: rotateY(180deg);
+  padding: 10px;
 }
 
 .flashcard.flipped {
   transform: rotateY(180deg);
 }
 
+/* Difficulty dropdown */
 .difficulty-select {
   margin-bottom: 20px;
+  font-size: 16px;
+  padding: 8px 12px;
+  border: 2px solid #ff69b4;
+  border-radius: 8px;
+  background-color: #fff5ee;
+  color: #333;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.difficulty-select:hover {
+  border-color: #ff4500;
 }
 
 .controls {
@@ -180,18 +154,18 @@ select, button {
 }
 
 .controls button {
-  background-color: #ff6b6b;
+  background-color: #ff7f50;
   color: white;
   font-size: 16px;
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .controls button:hover {
-  background-color: #ff4500;
+  background-color: #ffa07a;
 }
 
 @media (max-width: 600px) {
@@ -203,4 +177,50 @@ select, button {
   .flashcard .answer {
       font-size: 14px;
   }
+}
+
+/* Add subtle animations for child engagement */
+@keyframes pop {
+  0% {
+      transform: scale(1);
+  }
+  50% {
+      transform: scale(1.1);
+  }
+  100% {
+      transform: scale(1);
+  }
+}
+.flashcard:hover {
+  animation: pop 0.4s ease;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #b27dd3;
+  color: white;
+  padding: 20px;
+  width: 100%;
+  position: relative;
+  bottom: -145px;
+  text-align: center;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+footer a:hover {
+  color: #ffeb3b;
+}
+
+footer p {
+  font-size: 1.2rem;
+  margin: 5px 0;
+}
+
+footer p:first-child {
+  font-size: 1rem;
 }

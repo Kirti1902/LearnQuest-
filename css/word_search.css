@@ -1,7 +1,7 @@
 /* General Body Styling */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9;
+    font-family: 'Comic Sans MS', sans-serif;
+    background-color: #ffefd5;
     color: #333;
     margin: 0;
     padding: 0;
@@ -17,18 +17,20 @@ body {
 h1 {
     font-size: 2.5rem;
     margin-top: 20px;
-    color: #2a9d8f;
+    color: #ff6347;
+    text-shadow: 2px 2px #ffa07a;
 }
 
 /* Info Section Styling */
 #info {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 20px;
     align-items: center;
-    background-color: #264653;
+    background-color: #ffd700;
     color: #fff;
     padding: 10px 20px;
-    border-radius: 8px;
+    border-radius: 15px;
     margin: 20px 0;
     width: 90%;
     max-width: 800px;
@@ -40,42 +42,70 @@ h1 {
     font-size: 1.2rem;
 }
 
+/* Game Container Styling */
+#game-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
+}
+
+/* Grid Styling */
 #grid-container {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  gap: 5px;
-  margin: 20px auto;
-  max-width: 400px;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 5px;
+    max-width: 481px;
+    border: 5px solid #ff6347;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #fff8dc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .grid-cell {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #ccc;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  user-select: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #ffa07a;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #fffacd;
+    border-radius: 5px;
+    user-select: none;
+    transition: all 0.3s ease;
 }
 
 .grid-cell:hover {
-  background-color: #f0f0f0;
+    background-color: #ffdab9;
+    transform: scale(1.1);
 }
 
 /* Word List Styling */
 #words-list {
     list-style-type: none;
     padding: 0;
-    margin: 20px 0;
+    margin: 9px;
+    width: 200px;
+    background-color: #ffd700;
+    border-radius: 10px;
+    padding: 9px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 1rem;
+    text-align: left;
 }
 
 #words-list li {
     font-size: 1.1rem;
-    margin: 5px 0;
-    color: #2a9d8f;
+    margin: 8px 0;
+    color: #ff6347;
+    font-weight: bold;
 }
 
 /* Button Styling */
@@ -83,31 +113,39 @@ button {
     padding: 10px 20px;
     font-size: 1rem;
     color: #fff;
-    background-color: #2a9d8f;
+    background-color: #ff6347;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-    background-color: #264653;
+    background-color: #ff4500;
+    transform: scale(1.1);
 }
-
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    #game-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
     #grid-container {
-        width: 90%;
+        grid-template-columns: repeat(8, 1fr);
         gap: 4px;
     }
 
     .grid-cell {
         font-size: 16px;
+        width: 35px;
+        height: 35px;
     }
 
-    #info {
-        flex-direction: column;
-        gap: 10px;
+    #words-list {
+        width: 100%;
+        font-size: 1rem;
     }
 }
