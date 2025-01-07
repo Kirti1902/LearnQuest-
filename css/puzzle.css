@@ -1,0 +1,99 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f8ff;
+    margin: 0;
+  }
+  
+  .container {
+    text-align: center;
+    width: 80%;
+    max-width: 600px;
+  }
+  
+  h1 {
+    color: #4CAF50;
+  }
+  
+  .puzzle-section {
+    margin: 20px;
+    padding: 10px;
+  }
+  
+  #shape-to-identify {
+    font-size: 2rem;
+    width: 150px;
+    height: 150px;
+    margin: 10px auto;
+    background-color: #dcdcdc;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .target-shape {
+    width: 150px;
+    height: 150px;
+    margin: 10px auto;
+    background-color: #f0f8ff;
+    border: 2px dashed #888;
+  }
+  
+  .shapes-drag {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+  }
+  
+  .draggable {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: red;
+  }
+  
+  .square {
+    width: 60px;
+    height: 60px;
+    background-color: green;
+  }
+  
+  .triangle {
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 60px solid blue;
+  }
+  
+  #next-puzzle {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  #next-puzzle:hover {
+    background-color: #45a049;
+  }
+  
+  #result {
+    margin-top: 20px;
+    font-size: 1.2rem;
+  }
+  

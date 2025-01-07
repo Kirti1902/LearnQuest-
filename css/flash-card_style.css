@@ -1,0 +1,114 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Comic Sans MS', sans-serif;
+    background-color: #fefae0;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    min-width: 320px; /* Ensure mobile devices aren't squished */
+}
+
+.container {
+    text-align: center;
+    width: 90%;
+    max-width: 800px; /* Increased max-width for larger screens */
+    margin-top: 20px;
+}
+
+.flashcard-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.flashcard {
+    width: 150px;
+    height: 225px;
+    background-color: #ffcccb;
+    border-radius: 15px;
+    position: relative;
+    margin: 10px;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transform: rotateY(0);
+    transition: transform 0.6s;
+}
+
+.flashcard img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    backface-visibility: hidden;
+}
+
+.flashcard .answer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #ff6b6b;
+    border-radius: 15px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+}
+
+.flashcard.flipped {
+    transform: rotateY(180deg);
+}
+
+.difficulty-select {
+    margin-bottom: 20px;
+}
+
+.controls {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.controls button {
+    background-color: #ff6b6b;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.controls button:hover {
+    background-color: #ff4500;
+}
+
+@media (max-width: 600px) {
+    .flashcard {
+        width: 120px;
+        height: 180px;
+    }
+
+    .flashcard .answer {
+        font-size: 14px;
+    }
+}

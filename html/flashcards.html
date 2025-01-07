@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards for Kids</title>
+    <link rel="stylesheet" href="../css/flash-card_style.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="difficulty-select">
+        <label for="class-level">Select Category:</label>
+        <select id="class-level" onchange="loadFlashcards()">
+            <option value="animals">Animals</option>
+            <option value="flowers">Flowers</option>
+            <option value="fruits">Fruits</option>
+            <option value="vegetables">Vegetables</option>
+        </select>
+    </div>
+    <div id="flashcards-container" class="flashcard-container">
+        <!-- Flashcards will be generated here -->
+    </div>
+    <div class="controls">
+        <button onclick="loadFlashcards()">Generate Flashcards</button>
+        <button class="return-btn" onclick="Return()">Return</button>
+    </div>
+</div>
+
+<script src="../js/flashcard.js"></script>
+
+</body>
+</html>

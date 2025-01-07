@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kid-Friendly Math Quiz</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', sans-serif;
+      background-color: #fefae0;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .quiz-container {
+      background: #ffefd5;
+      border: 5px solid #ffa500;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 90%;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .quiz-header {
+      font-size: 24px;
+      font-weight: bold;
+      color: #ff4500;
+    }
+
+    .timer, .scoreboard {
+      font-size: 18px;
+      margin: 10px 0;
+      color: #008b8b;
+    }
+
+    .difficulty-select {
+      margin-bottom: 20px;
+    }
+
+    .question {
+      font-size: 20px;
+      margin: 20px 0;
+      color: #008b8b;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .option {
+      background-color: #ffcccb;
+      border: 2px solid #ff6b6b;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .option:hover {
+      transform: scale(1.1);
+      background-color: #ff9999;
+    }
+
+    .result {
+      display: none;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .next-button {
+      margin-top: 20px;
+      background-color: #87ceeb;
+      color: white;
+      font-size: 16px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .next-button:hover {
+      background-color: #4682b4;
+    }
+
+    .next-button:disabled {
+      background-color: #ddd;
+      cursor: not-allowed;
+    }
+
+    .return-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #ff6b6b;
+      color: white;
+      font-size: 14px;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .return-button:hover {
+      background-color: #ff4500;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <button class="return-button" onclick="confirmReturn()">🔙 Return</button>
+    <div class="quiz-header">🧮 Fun Math Quiz! 🧮</div>
+    <div class="difficulty-select">
+      <label for="difficulty">Select Class Level:</label>
+      <select id="difficulty" onchange="resetQuiz()">
+        <option value="1">Class 1</option>
+        <option value="2">Class 2</option>
+        <option value="3">Class 3</option>
+        <option value="4">Class 4</option>
+        <option value="5">Class 5</option>
+      </select>
+    </div>
+    <div class="timer">Time left: <span id="timer">10</span> seconds</div>
+    <div class="scoreboard">Score: <span id="score">0</span></div>
+    <div class="question"></div>
+    <div class="options">
+      <div class="option" onclick="checkAnswer(this, false)">Option 1</div>
+      <div class="option" onclick="checkAnswer(this, false)">Option 2</div>
+      <div class="option" onclick="checkAnswer(this, false)">Option 3</div>
+      <div class="option" onclick="checkAnswer(this, false)">Option 4</div>
+    </div>
+    <div class="result">Correct! 🎉</div>
+    <button class="next-button" onclick="nextQuestion()" disabled>Next Question</button>
+  </div>
+
+  <script>
+    let currentLevel = 1;
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let timer;
+    let timeLeft = 10;
+
+    function generateQuestion(level) {
+      const num1 = Math.floor(Math.random() * (10 + level * 5));
+      const num2 = Math.floor(Math.random() * (10 + level * 5));
+      const operation = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
+
+      let question, correctAnswer;
+      switch (operation) {
+        case '+':
+          question = `${num1} + ${num2}`;
+          correctAnswer = num1 + num2;
+          break;
+        case '-':
+          question = `${num1} - ${num2}`;
+          correctAnswer = num1 - num2;
+          break;
+        case '*':
+          question = `${num1} x ${num2}`;
+          correctAnswer = num1 * num2;
+          break;
+        case '/':
+          correctAnswer = num1 === 0 ? 1 : Math.floor(num1 / num2);
+          question = `${correctAnswer * num2} ÷ ${num2}`;
+          break;
+      }
+
+      const options = [correctAnswer];
+      while (options.length < 4) {
+        const wrongAnswer = correctAnswer + Math.floor(Math.random() * (5 + level)) - 2;
+        if (!options.includes(wrongAnswer)) options.push(wrongAnswer);
+      }
+
+      return {
+        question,
+        options: options.sort(() => Math.random() - 0.5),
+        correctIndex: options.indexOf(correctAnswer),
+      };
+    }
+
+    let questions = [];
+
+    function loadQuestions() {
+      questions = Array.from({ length: 5 }, () => generateQuestion(currentLevel));
+    }
+
+    function loadQuestion() {
+      clearInterval(timer);
+      timeLeft = 10;
+      const questionData = questions[currentQuestionIndex];
+      document.querySelector(".question").textContent = questionData.question;
+      const optionsEl = document.querySelectorAll(".option");
+      optionsEl.forEach((option, index) => {
+        option.textContent = questionData.options[index];
+        option.onclick = () => checkAnswer(option, index === questionData.correctIndex);
+        option.style.backgroundColor = "";
+      });
+      document.querySelector(".result").style.display = "none";
+      document.querySelector(".next-button").disabled = true;
+      timer = setInterval(updateTimer, 1000);
+    }
+
+    function updateTimer() {
+      timeLeft--;
+      document.getElementById("timer").textContent = timeLeft;
+      if (timeLeft === 0) {
+        clearInterval(timer);
+        checkAnswer(null, false);
+      }
+    }
+
+    function checkAnswer(option, isCorrect) {
+      clearInterval(timer);
+      const resultEl = document.querySelector(".result");
+      const nextButton = document.querySelector(".next-button");
+
+      if (isCorrect) {
+        resultEl.textContent = "Correct! 🎉";
+        resultEl.style.color = "#32cd32";
+        score++;
+        document.getElementById("score").textContent = score;
+        option.style.backgroundColor = "#90ee90";
+      } else {
+        resultEl.textContent = "Wrong! 😔";
+        resultEl.style.color = "#ff4500";
+        if (option) option.style.backgroundColor = "#ff7f7f";
+      }
+
+      resultEl.style.display = "block";
+      nextButton.disabled = false;
+    }
+
+    function nextQuestion() {
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questions.length) {
+        loadQuestion();
+      } else {
+        endQuiz();
+      }
+    }
+
+    function endQuiz() {
+      document.querySelector(".quiz-container").innerHTML = `
+        <div class='quiz-header'>Quiz Complete! 🎉</div>
+        <div class='scoreboard'>Your Final Score: ${score}</div>`;
+    }
+
+    function resetQuiz() {
+      currentLevel = parseInt(document.getElementById("difficulty").value);
+      currentQuestionIndex = 0;
+      score = 0;
+      document.getElementById("score").textContent = score;
+      loadQuestions();
+      loadQuestion();
+    }
+
+    function confirmReturn() {
+      if (currentQuestionIndex < questions.length) {
+        const confirmExit = confirm("The quiz is not finished. Are you sure you want to return?");
+        if (confirmExit) window.history.back();
+      } else {
+        window.history.back();
+      }
+    }
+
+    resetQuiz();
+  </script>
+</body>
+</html>

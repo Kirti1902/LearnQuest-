@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Geometry Shapes Puzzle</title>
+  <link rel="stylesheet" href="../css/puzzle.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1>Geometry Shapes Puzzle</h1>
+    <div class="puzzle-section">
+      <div id="shape-to-identify" class="shape">?</div>
+      <div id="target-shape" class="target-shape"></div>
+    </div>
+
+    <div class="shapes-drag">
+      <div id="circle" class="draggable shape" draggable="true" ondragstart="drag(event)">
+        <div class="circle"></div>
+      </div>
+      <div id="square" class="draggable shape" draggable="true" ondragstart="drag(event)">
+        <div class="square"></div>
+      </div>
+      <div id="triangle" class="draggable shape" draggable="true" ondragstart="drag(event)">
+        <div class="triangle"></div>
+      </div>
+    </div>
+
+    <button id="next-puzzle" onclick="nextPuzzle()">Next Puzzle</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script src="../js/puzzle.js"></script>
+</body>
+</html>
