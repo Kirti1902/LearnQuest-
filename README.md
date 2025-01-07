@@ -88,6 +88,63 @@ To run the project, all you need is:
 
 ---
 
+Here's the updated `README.md` with the addition of the **Word Search Game**:
+
+---
+
+# Memory Game and Word Search Game
+
+A collection of fun and interactive games designed for kids to improve their memory, focus, and vocabulary skills.
+
+## Games:
+
+### **Memory Game**
+- **Game Play:** Match pairs of cards in the least number of moves.
+- **Timer:** Track the time it takes to complete the game.
+- **Moves Tracker:** Count the number of moves taken to complete the game.
+- **Finish Effect:** A celebratory finish effect with a message after completing the game.
+- **Responsive:** Works on both desktop and mobile devices.
+
+### **Word Search Game**
+- **Game Play:** Find hidden words within a grid of letters.
+- **Timer:** Track the time it takes to find all the words.
+- **Word List:** Display a list of words to find in the grid.
+- **Score Tracker:** Count how many words you've found.
+- **Finish Effect:** Celebrate when all words are found.
+
+## Files Overview:
+
+### Memory Game:
+- **index.html:** Main HTML file for the Memory Game.
+- **memory_game.css:** The CSS file for styling the game.
+- **memory_game.js:** JavaScript file implementing the game logic.
+- **finishEffect.js:** Global script for handling the finish effect across different games.
+
+### Word Search Game:
+- **word_search.html:** Main HTML file for the Word Search Game.
+- **word_search.css:** The CSS file for styling the Word Search Game.
+- **word_search.js:** JavaScript file implementing the Word Search Game logic.
+- **finishEffect.js:** Global script for handling the finish effect across different games.
+
+---
+
+## How to Play:
+
+### **Memory Game**
+1. Click on the cards to flip them.
+2. Match pairs of cards.
+3. Track your moves and time at the top.
+4. Celebrate your success when you complete the game!
+
+### **Word Search Game**
+1. Search for the words from the word list in the grid of letters.
+2. Click on the letters to select the words.
+3. Track your score and time at the top.
+4. Celebrate your success when all words are found!
+
+---
+
+
 ## Future Enhancements
 
 Here are some features that could be added to further enhance the website:
